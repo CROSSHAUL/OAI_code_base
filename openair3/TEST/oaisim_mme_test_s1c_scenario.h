@@ -19,9 +19,6 @@
  *      contact@openairinterface.org
  */
 
-#ifndef __TEST_OAISIM_MME_TEST_S1C_SCENARIO__H__
-#define __TEST_OAISIM_MME_TEST_S1C_SCENARIO__H__
-
 #include <stdlib.h>
 #include <stdint.h>
 
@@ -52,5 +49,3 @@ int      compare_buffer(const uint8_t *buffer, const uint32_t length_buffer, con
 unsigned decode_hex_length(const char *h);
 int      decode_hex(uint8_t *dst, const char *h);
 uint8_t *decode_hex_dup(const char *hex);
-
-#endif

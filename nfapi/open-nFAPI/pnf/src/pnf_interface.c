@@ -39,7 +39,7 @@ nfapi_pnf_config_t* nfapi_pnf_config_create()
 	_this->_public.codec_config.allocate = &malloc;
 	_this->_public.codec_config.deallocate = &free;
 
-	return (nfapi_pnf_config_t* )_this;
+	return &(_this->_public);
 }
 
 void nfapi_pnf_config_destory(nfapi_pnf_config_t* config)

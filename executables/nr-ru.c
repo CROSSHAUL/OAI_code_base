@@ -1,24 +1,41 @@
-/*
- * Licensed to the OpenAirInterface (OAI) Software Alliance under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The OpenAirInterface Software Alliance licenses this file to You under
- * the OAI Public License, Version 1.1  (the "License"); you may not use this file
- * except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.openairinterface.org/?page_id=698
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *-------------------------------------------------------------------------------
- * For more information about the OpenAirInterface (OAI) Software Alliance:
- *      contact@openairinterface.org
- */
+/*******************************************************************************
+    OpenAirInterface
+    Copyright(c) 1999 - 2014 Eurecom
 
+    OpenAirInterface is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    OpenAirInterface is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with OpenAirInterface.The full GNU General Public License is
+    included in this distribution in the file called "COPYING". If not,
+    see <http://www.gnu.org/licenses/>.
+
+   Contact Information
+   OpenAirInterface Admin: openair_admin@eurecom.fr
+   OpenAirInterface Tech : openair_tech@eurecom.fr
+   OpenAirInterface Dev  : openair4g-devel@lists.eurecom.fr
+
+   Address      : Eurecom, Campus SophiaTech, 450 Route des Chappes, CS 50193 - 06904 Biot Sophia Antipolis cedex, FRANCE
+
+*******************************************************************************/
+
+/*! \file lte-enb.c
+ * \brief Top-level threads for eNodeB
+ * \author R. Knopp, F. Kaltenberger, Navid Nikaein
+ * \date 2012
+ * \version 0.1
+ * \company Eurecom
+ * \email: knopp@eurecom.fr,florian.kaltenberger@eurecom.fr, navid.nikaein@eurecom.fr
+ * \note
+ * \warning
+ */
 #define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
@@ -74,7 +91,7 @@ unsigned short config_frames[4] = {2,9,11,13};
 static int DEFBANDS[] = {7};
 static int DEFENBS[] = {0};
 static int DEFBFW[] = {0x00007fff};
-
+ 
 //static int DEFNRBANDS[] = {7};
 //static int DEFGNBS[] = {0};
 
@@ -694,7 +711,7 @@ void rx_rf(RU_t *ru,int *frame,int *slot) {
 }
 
 
-void tx_rf(RU_t *ru,int frame,int slot, uint64_t timestamp) {
+void tx_rf(RU_t *ru,int frame,int slot, uint64_t timestamp) { 
   RU_proc_t *proc = &ru->proc;
   NR_DL_FRAME_PARMS *fp = ru->nr_frame_parms;
   nfapi_nr_config_request_scf_t *cfg = &ru->gNB_list[0]->gNB_config;
@@ -773,7 +790,7 @@ void tx_rf(RU_t *ru,int frame,int slot, uint64_t timestamp) {
       LOG_D(PHY,"[TXPATH] RU %d tx_rf, writing to TS %llu, frame %d, unwrapped_frame %d, slot %d\n",ru->idx,
 	    (long long unsigned int)timestamp,frame,proc->frame_tx_unwrap,slot);
       VCD_SIGNAL_DUMPER_DUMP_FUNCTION_BY_NAME( VCD_SIGNAL_DUMPER_FUNCTIONS_TRX_WRITE, 0 );
-      //AssertFatal(txs == 0,"trx write function error %d\n", txs);
+      AssertFatal(txs ==  siglen+sf_extension,"TX : Timeout (sent %u/%d)\n", txs, siglen);
   }
 }
 
@@ -865,7 +882,7 @@ void *ru_thread_prach( void *param ) {
                 0,0
           );
     }
-    VCD_SIGNAL_DUMPER_DUMP_FUNCTION_BY_NAME( VCD_SIGNAL_DUMPER_FUNCTIONS_PHY_RU_PRACH_RX, 0 );*/
+    VCD_SIGNAL_DUMPER_DUMP_FUNCTION_BY_NAME( VCD_SIGNAL_DUMPER_FUNCTIONS_PHY_RU_PRACH_RX, 0 );*/ 
     if (release_thread(&proc->mutex_prach,&proc->instance_cnt_prach,"ru_prach_thread") < 0) break;
   }
 
@@ -1092,16 +1109,16 @@ void fill_rf_config(RU_t *ru, char *rf_config_file) {
       }
     } else if(N_RB == 106) {
       if (fp->threequarter_fs) {
-        cfg->sample_rate=46.08e6;
-        cfg->samples_per_frame = 460800;
-        cfg->tx_bw = 40e6;
-        cfg->rx_bw = 40e6;
+	cfg->sample_rate=46.08e6;
+	cfg->samples_per_frame = 460800;
+	cfg->tx_bw = 40e6;
+	cfg->rx_bw = 40e6;
       }
       else {
-        cfg->sample_rate=61.44e6;
-        cfg->samples_per_frame = 614400;
-        cfg->tx_bw = 40e6;
-        cfg->rx_bw = 40e6;
+	cfg->sample_rate=61.44e6;
+	cfg->samples_per_frame = 614400;
+	cfg->tx_bw = 40e6;
+	cfg->rx_bw = 40e6;
       }
     } else {
       AssertFatal(0==1,"N_RB %d not yet supported for numerology %d\n",N_RB,mu);
@@ -1223,7 +1240,7 @@ void *ru_stats_thread(void *param) {
 
       if (ru->feprx) print_meas(&ru->ofdm_demod_stats,"feprx",NULL,NULL);
 
-      if (ru->feptx_ofdm) {
+      if (ru->feptx_ofdm){
         print_meas(&ru->precoding_stats,"feptx_prec",NULL,NULL);
         print_meas(&ru->txdataF_copy_stats,"txdataF_copy",NULL,NULL);
         print_meas(&ru->ofdm_mod_stats,"feptx_ofdm",NULL,NULL);
@@ -1232,7 +1249,7 @@ void *ru_stats_thread(void *param) {
 
       if (ru->fh_north_asynch_in) print_meas(&ru->rx_fhaul,"rx_fhaul",NULL,NULL);
 
-      print_meas(&ru->tx_fhaul,"tx_fhaul",NULL,NULL);
+        print_meas(&ru->tx_fhaul,"tx_fhaul",NULL,NULL);
       if (ru->fh_north_out) {
         print_meas(&ru->compression,"compression",NULL,NULL);
         print_meas(&ru->transport,"transport",NULL,NULL);
@@ -1363,7 +1380,7 @@ void *ru_thread_tx( void *param ) {
           L1_proc->instance_cnt_RUs = 0;
           VCD_SIGNAL_DUMPER_DUMP_VARIABLE_BY_NAME(VCD_SIGNAL_DUMPER_VARIABLES_FRAME_NUMBER_RX0_UE,L1_proc->instance_cnt_RUs);
           AssertFatal(pthread_cond_signal(&L1_proc->cond_RUs) == 0,
-                      "ERROR pthread_cond_signal for gNB_L1_thread\n");
+                       "ERROR pthread_cond_signal for gNB_L1_thread\n");
         } //else AssertFatal(1==0,"gNB TX thread is not ready\n");
         ret = pthread_mutex_unlock(&L1_proc->mutex_RUs_tx);
         AssertFatal(ret == 0,"mutex_unlock returns %d\n",ret);
@@ -1463,16 +1480,6 @@ void *ru_thread( void *param ) {
 
     // if this is a slave RRU, try to synchronize on the DL frequency
     if ((ru->is_slave) && (ru->if_south == LOCAL_RF)) do_ru_synch(ru);
-
-    // start trx write thread
-    if (ru->start_write_thread){
-      if(ru->start_write_thread(ru) != 0){
-        LOG_E(HW,"Could not start tx write thread\n");
-      }
-      else{
-        LOG_I(PHY,"tx write thread ready\n");
-      }
-    }
   }
 
   pthread_mutex_lock(&proc->mutex_FH1);
@@ -1682,15 +1689,14 @@ int stop_rf(RU_t *ru) {
   return 0;
 }
 
-int start_write_thread(RU_t *ru) {
-  return(ru->rfdevice.trx_write_init(&ru->rfdevice));
-}
 
 void init_RU_proc(RU_t *ru) {
   int i=0;
   RU_proc_t *proc;
   char name[100];
+#ifndef OCP_FRAMEWORK
   LOG_I(PHY,"Initializing RU proc %d (%s,%s),\n",ru->idx,NB_functions[ru->function],NB_timing[ru->if_timing]);
+#endif
   proc = &ru->proc;
   memset((void *)proc,0,sizeof(RU_proc_t));
   proc->ru = ru;
@@ -2078,7 +2084,6 @@ void set_function_spec_param(RU_t *ru) {
       ru->fh_south_out           = tx_rf;                               // local synchronous RF TX
       ru->start_rf               = start_rf;                            // need to start the local RF interface
       ru->stop_rf                = stop_rf;
-      ru->start_write_thread     = start_write_thread;                  // starting RF TX in different thread
       printf("configuring ru_id %u (start_rf %p)\n", ru->idx, start_rf);
       /*
           if (ru->function == gNodeB_3GPP) { // configure RF parameters only for 3GPP eNodeB, we need to get them from RAU otherwise
@@ -2104,7 +2109,6 @@ void set_function_spec_param(RU_t *ru) {
       ru->fh_south_asynch_in     = NULL;                // no asynchronous UL
       ru->start_rf               = NULL;                // no local RF
       ru->stop_rf                = NULL;
-      ru->start_write_thread     = NULL;
       ru->nr_start_if            = nr_start_if;         // need to start if interface for IF5
       ru->ifdevice.host_type     = RAU_HOST;
       ru->ifdevice.eth_params    = &ru->eth_params;
@@ -2131,7 +2135,6 @@ void set_function_spec_param(RU_t *ru) {
       ru->fh_north_asynch_in     = NULL;
       ru->start_rf               = NULL;                // no local RF
       ru->stop_rf                = NULL;
-      ru->start_write_thread     = NULL;
       ru->nr_start_if            = nr_start_if;         // need to start if interface for IF4p5
       ru->ifdevice.host_type     = RAU_HOST;
       ru->ifdevice.eth_params    = &ru->eth_params;
@@ -2161,6 +2164,7 @@ void init_NR_RU(char *rf_config_file)
   PHY_VARS_gNB *gNB0= (PHY_VARS_gNB *)NULL;
   NR_DL_FRAME_PARMS *fp = (NR_DL_FRAME_PARMS *)NULL;
   int i;
+  int CC_id;
   // create status mask
   RC.ru_mask = 0;
   pthread_mutex_init(&RC.ru_mutex,NULL);
@@ -2289,7 +2293,7 @@ void RCconfig_RU(void)
         }
       }
       else {
-        RC.ru[j]->openair0_cfg.clock_source = unset;
+	RC.ru[j]->openair0_cfg.clock_source = unset;
       }
 
       if (config_isparamset(RUParamList.paramarray[j], RU_SDR_TME_SRC)) {

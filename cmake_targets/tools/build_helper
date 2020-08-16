@@ -183,14 +183,10 @@ compilations() {
     else
         COV_SCAN_PREFIX=""
     fi
-    if [ "$MAKE_CMD" != "" ]; then
-       $MAKE_CMD $2
-    else 
     if [ "$VERBOSE_COMPILE" == "1" ]; then
        $COV_SCAN_PREFIX make -j`nproc` $2 VERBOSE=$VERBOSE_COMPILE
     else
        $COV_SCAN_PREFIX make -j`nproc` $2
-    fi
     fi
 
   } > $dlog/$2.$REL.txt 2>&1
@@ -623,7 +619,6 @@ check_install_oai_software() {
 	build-essential \
 	cmake \
 	cmake-curses-gui  \
-        ninja-build \
 	doxygen \
 	doxygen-gui \
 	texlive-latex-base \

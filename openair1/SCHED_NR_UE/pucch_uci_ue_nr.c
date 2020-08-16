@@ -186,8 +186,6 @@ bool pucch_procedures_ue_nr(PHY_VARS_NR_UE *ue, uint8_t gNB_id, UE_nr_rxtx_proc_
   int       pucch_resource_id = MAX_NB_OF_PUCCH_RESOURCES;
   int       pucch_resource_indicator = MAX_PUCCH_RESOURCE_INDICATOR;
   int       n_HARQ_ACK;
-  uint16_t crnti=0x1234;
-  int dmrs_scrambling_id=0,data_scrambling_id=0;
 
   /* update current context */
 
@@ -593,9 +591,7 @@ bool pucch_procedures_ue_nr(PHY_VARS_NR_UE *ue, uint8_t gNB_id, UE_nr_rxtx_proc_
     case pucch_format2_nr:
     {
       nr_generate_pucch2(ue,
-                         crnti,
-			 dmrs_scrambling_id,
-			 data_scrambling_id,
+                         0,//ue->pdcch_vars[ue->current_thread_id[proc->nr_tti_rx]][gNB_id]->crnti,
                          ue->common_vars.txdataF,
                          &ue->frame_parms,
                          &ue->pucch_config_dedicated[gNB_id],

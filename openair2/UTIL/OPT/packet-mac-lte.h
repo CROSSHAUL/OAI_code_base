@@ -22,8 +22,6 @@
  modified to be used in OpenAir to create the LTE MAC/RLC encapsulated in UDP as per Wireshark feature 
  */
 
-#ifndef __UTIL_OPT_PACKET_MAC_LTE__H__
-#define __UTIL_OPT_PACKET_MAC_LTE__H__
 
 #include "ws_symbol_export.h"
 
@@ -378,5 +376,3 @@ typedef enum {
  * vi: set shiftwidth=4 tabstop=8 expandtab:
  * :indentSize=4:tabSize=8:noTabs=true:
  */
-
-#endif

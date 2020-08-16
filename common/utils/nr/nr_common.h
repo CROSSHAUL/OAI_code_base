@@ -30,9 +30,6 @@
  * \warning
  */
 
-#ifndef __COMMON_UTILS_NR_NR_COMMON__H__
-#define __COMMON_UTILS_NR_NR_COMMON__H__
-
 #include <stdint.h>
 #include "assertions.h"
 
@@ -65,6 +62,4 @@ void SLIV2SL(int SLIV,int *S,int *L);
 #else
 #define max(a,b) cmax(a,b)
 #define min(a,b) cmin(a,b)
-#endif
-
 #endif

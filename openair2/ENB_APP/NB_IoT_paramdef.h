@@ -30,9 +30,6 @@
  * \warning
  */
 
-#ifndef __ENB_APP_NB_IOT_PARAMDEF__H__
-#define __ENB_APP_NB_IOT_PARAMDEF__H__
-
 #include "common/config/config_paramdesc.h"
 #include "SystemInformationBlockType2.h"
 #include "DL-GapConfig-NB-r13.h"
@@ -401,5 +398,3 @@
 /*-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /* NB IoT L1 configuration list section name   */
 #define NBIOT_L1LIST_CONFIG_STRING                          "NB-IoT_L1s"
-
-#endif

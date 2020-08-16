@@ -19,9 +19,6 @@
  *      contact@openairinterface.org
  */
 
-#ifndef __UTIL_OTG_TRAFFIC_CONFIG__H__
-#define __UTIL_OTG_TRAFFIC_CONFIG__H__
-
 //IDT DISTRIBUTION PARAMETERS
 #define IDT_DIST GAUSSIAN
 #define IDT_MIN 2
@@ -43,5 +40,3 @@
 //SOCKET MODE
 #define DST_PORT 1234;
 #define DST_IP "127.0.0.1"
-
-#endif

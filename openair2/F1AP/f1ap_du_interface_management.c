@@ -655,6 +655,12 @@ int DU_send_gNB_DU_CONFIGURATION_UPDATE(instance_t instance,
             /* > PLMN BroadcastPLMNs Item */
             F1AP_BroadcastPLMNs_Item_t *broadcastPLMNs_Item = (F1AP_BroadcastPLMNs_Item_t *)calloc(1, sizeof(F1AP_BroadcastPLMNs_Item_t));
             //memset((void *)&broadcastPLMNs_Item, 0, sizeof(F1AP_BroadcastPLMNs_Item_t));
+            LOG_W(F1AP, "JULIO - MCC: %d, MNC: %d, MNC DIGIT LENGTH: %d, plmn identity: %s", 
+              f1ap_setup_req->mcc[i],
+              f1ap_setup_req->mnc[i],
+              f1ap_setup_req->mnc_digit_length[i],
+              &broadcastPLMNs_Item->pLMN_Identity
+            )
             MCC_MNC_TO_PLMNID(f1ap_setup_req->mcc[i], f1ap_setup_req->mnc[i], f1ap_setup_req->mnc_digit_length[i], &broadcastPLMNs_Item->pLMN_Identity);
             ASN_SEQUENCE_ADD(&served_cell_information.servedPLMNs.list, broadcastPLMNs_Item);
         }

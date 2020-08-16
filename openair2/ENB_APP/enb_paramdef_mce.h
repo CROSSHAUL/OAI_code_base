@@ -30,9 +30,6 @@
  * \warning
  */
 
-#ifndef __ENB_APP_ENB_PARAMDEF_MCE__H__
-#define __ENB_APP_ENB_PARAMDEF_MCE__H__
-
 #include "common/config/config_paramdesc.h"
 #include "RRC_paramsvalues.h"
 
@@ -238,4 +235,5 @@
 #define MCE_CONFIG_STRING_NUM_FRAME_IDX	2
 #define MCE_CONFIG_STRING_SUBFRAME_ALLOCATION_IDX	3
 
-#endif
+
+

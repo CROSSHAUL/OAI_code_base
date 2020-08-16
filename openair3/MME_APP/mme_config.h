@@ -26,9 +26,8 @@
   EMAIL   : javier.morgade@ieee.org
 */
 
-#ifndef __MME_APP_MME_CONFIG__H__
-#define __MME_APP_MME_CONFIG__H__
-
+#ifndef MME_CONFIG_H_
+#define MME_CONFIG_H_
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
@@ -49,5 +48,5 @@
 
 int RCconfig_MME(void);
 
-#endif /* __MME_APP_MME_CONFIG__H__ */
+#endif /* MME_CONFIG_H_ */
 /** @} */

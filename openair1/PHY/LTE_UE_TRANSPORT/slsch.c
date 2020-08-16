@@ -29,6 +29,8 @@
  * \note
  * \warning
  */
+#ifndef __LTE_TRANSPORT_SLSS__C__
+#define __LTE_TRANSPORT_SLSS__C__
 #include "PHY/defs_UE.h"
 
 extern int
@@ -64,3 +66,5 @@ void generate_slsch(PHY_VARS_UE *ue,SLSCH_t *slsch,int frame_tx,int subframe_tx)
     
   }
 }
+
+#endif

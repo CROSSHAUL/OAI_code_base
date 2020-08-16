@@ -28,9 +28,8 @@
 * \email: lionel.gauthier@eurecom.fr
 */
 
-#ifndef __SIMULATION_ETH_TRANSPORT_SOCKET__H__
-#define __SIMULATION_ETH_TRANSPORT_SOCKET__H__
-
+#ifndef __SOCKET_H__
+#    define __SOCKET_H__
 #    ifdef SOCKET_C
 #        define private_socket(x) x
 #        define public_socket(x) x

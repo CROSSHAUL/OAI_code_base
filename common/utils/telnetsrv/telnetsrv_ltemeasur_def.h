@@ -32,8 +32,6 @@
  * \warning
  */
 
-#ifndef __TELNETSRV_LTEMEASUR_DEF__H__
-#define __TELNETSRV_LTEMEASUR_DEF__H__
 
 #define LTEMAC_MEASURE \
 { \
@@ -127,5 +125,3 @@
   {"timer_poll_retrans_tout",         NULL, TELNET_VARTYPE_UINT, 0},\
   {"timer_status_prohibit_tout",      NULL, TELNET_VARTYPE_UINT, 0},\
 }
-
-#endif

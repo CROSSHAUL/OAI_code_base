@@ -33,9 +33,6 @@
  * SUCH DAMAGE
  */
 
-#ifndef __COMMON_UTILS_T_TRACER_PACKET_MAC_LTE__H__
-#define __COMMON_UTILS_T_TRACER_PACKET_MAC_LTE__H__
-
 //#include "ws_symbol_export.h"
 
 /* radioType */
@@ -142,4 +139,3 @@
    continues until the end of the frame) */
 #define MAC_LTE_PAYLOAD_TAG 0x01
 
-#endif

@@ -26,8 +26,8 @@
  * \version 0.1
  */
 
-#ifndef __M3AP_MME_MANAGEMENT_PROCEDURES__H__
-#define __M3AP_MME_MANAGEMENT_PROCEDURES__H__
+#ifndef M3AP_MME_MANAGEMENT_PROCEDURES_H_
+#define M3AP_MME_MANAGEMENT_PROCEDURES_H
 
 void m3ap_MME_prepare_internal_data(void);
 
@@ -51,4 +51,4 @@ struct m3ap_MME_data_s *m3ap_get_MME(m3ap_MME_instance_t *instance_p,
                                      int32_t assoc_id,
                                      uint16_t cnx_id);
 
-#endif /* __M3AP_MME_MANAGEMENT_PROCEDURES__H__ */
+#endif /* M3AP_MME_MANAGEMENT_PROCEDURES_H_ */

@@ -171,7 +171,6 @@ int main(int argc, char **argv)
   //int pbch_tx_ant;
   int N_RB_DL=106,mu=1;
   nfapi_nr_dl_tti_pdsch_pdu_rel15_t dlsch_config;
-  NR_sched_pucch pucch_sched;
 
   //unsigned char frame_type = 0;
 
@@ -708,7 +707,7 @@ int main(int argc, char **argv)
 
       memset(RC.nrmac[0]->cce_list[1][0],0,MAX_NUM_CCE*sizeof(int));
       clear_nr_nfapi_information(RC.nrmac[0], 0, frame, slot);
-      if (css_flag == 0) nr_schedule_uss_dlsch_phytest(0,frame,slot,&pucch_sched,&dlsch_config);
+      if (css_flag == 0) nr_schedule_uss_dlsch_phytest(0,frame,slot,&dlsch_config);
       else               nr_schedule_css_dlsch_phytest(0,frame,slot);
       
       
@@ -869,7 +868,7 @@ int main(int argc, char **argv)
       
       if (errors_scrambling > 0) {
 	if (n_trials == 1)
-	  printf("errors_scrambling = %u/%u (trial %d)\n", errors_scrambling, available_bits,trial);
+	  printf("errors_scrambling = %d/%d (trial %d)\n", errors_scrambling, available_bits,trial);
       }
       
       if (errors_bit > 0) {
@@ -977,8 +976,6 @@ int main(int argc, char **argv)
   if (input_fd)
     fclose(input_fd);
 
-  if (scg_fd)
-    fclose(scg_fd);
   return(n_errors);
   
 }

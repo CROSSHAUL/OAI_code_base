@@ -30,10 +30,6 @@
  * \note
  * \warning
  */
-
-#ifndef __TELNETSRV_PROCCMD__H__
-#define __TELNETSRV_PROCCMD__H__
-
 #include <dlfcn.h>
 #include "telnetsrv.h"
 
@@ -83,4 +79,3 @@ telnetshell_cmddef_t proc_cmdarray[] = {
 extern void add_proccmd_cmds(void);
 #endif  /* TELNETSRV_PROCCMD_MAIN */
 
-#endif

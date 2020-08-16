@@ -30,9 +30,6 @@
  * \warning
  */
 
-#ifndef __TELNETSRV_PHYCMD__H__
-#define __TELNETSRV_PHYCMD__H__
-
 #ifdef TELNETSRV_PHYCMD_MAIN
 
 #include "common/utils/LOG/log.h"
@@ -64,4 +61,3 @@ extern void add_phy_cmds(void);
 
 /*-------------------------------------------------------------------------------------*/
 
-#endif

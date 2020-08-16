@@ -5,5 +5,3 @@ iperf_*.*
 phones_list.txt
 modules_list.txt
 test_results*.html
-pMain*
-__pycache__

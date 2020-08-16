@@ -248,8 +248,7 @@ const char* eurecomVariablesNames[] = {
   "slot_number_TX1_gNB",
   "slot_number_RX0_gNB",
   "slot_number_RX1_gNB",
-  "ru_tx_ofdm_mask",
-  "usrp_send_return"
+  "ru_tx_ofdm_mask"
 };
 
 const char* eurecomFunctionsNames[] = {
@@ -283,8 +282,6 @@ const char* eurecomFunctionsNames[] = {
   "lock_mutex_ru",
   "lock_mutex_ru1",
   "lock_mutex_ru2",
-  /* uhd signals */
-  "trx_write_thread",
   /* simulation signals */
   "do_DL_sig",
   "do_UL_sig",

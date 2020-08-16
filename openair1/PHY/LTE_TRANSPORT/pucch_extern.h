@@ -30,9 +30,6 @@
 * \warning
 */
 
-#ifndef __PHY_LTE_TRANSPORT_PUCCH_EXTERN__H__
-#define __PHY_LTE_TRANSPORT_PUCCH_EXTERN__H__
-
 #include <stdint.h>
 
 /* PUCCH format3 >> */
@@ -79,5 +76,3 @@ extern uint8_t Np4_TBL[4];
 // alpha_TBL
 extern int16_t alphaTBL_re[12];
 extern int16_t alphaTBL_im[12];
-
-#endif

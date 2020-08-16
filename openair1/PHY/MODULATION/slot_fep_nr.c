@@ -25,7 +25,6 @@
 #include "nr_modulation.h"
 #include "PHY/LTE_ESTIMATION/lte_estimation.h"
 #include "PHY/NR_UE_ESTIMATION/nr_estimation.h"
-#include <common/utils/LOG/log.h>
 
 //#define DEBUG_FEP
 

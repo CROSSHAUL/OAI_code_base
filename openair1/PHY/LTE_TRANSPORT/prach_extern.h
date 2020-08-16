@@ -29,10 +29,6 @@
  * \note
  * \warning
  */
-
-#ifndef __PHY_LTE_TRANSPORT_PRACH_EXTERN__H__
-#define __PHY_LTE_TRANSPORT_PRACH_EXTERN__H__
-
 #include "PHY/sse_intrin.h"
 #include "PHY/defs_eNB.h"
 #include "PHY/phy_extern.h"
@@ -95,4 +91,3 @@ void compute_prach_seq(uint16_t rootSequenceIndex,
 		       lte_frame_type_t frame_type,
 		       uint32_t X_u[64][839]);
 
-#endif

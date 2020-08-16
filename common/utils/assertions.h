@@ -19,9 +19,6 @@
  *      contact@openairinterface.org
  */
 
-#ifndef __COMMON_UTILS_ASSERTIONS__H__
-#define __COMMON_UTILS_ASSERTIONS__H__
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <inttypes.h>
@@ -32,6 +29,9 @@
 #else
 # include "backtrace.h"
 #endif
+
+#ifndef ASSERTIONS_H_
+#define ASSERTIONS_H_
 
 void output_log_mem(void);
 #define _Assert_Exit_                           \
@@ -83,4 +83,4 @@ do {                                                            \
     }                                                           \
 } while(0)
 
-#endif /* __COMMON_UTILS_ASSERTIONS__H__ */
+#endif /* ASSERTIONS_H_ */

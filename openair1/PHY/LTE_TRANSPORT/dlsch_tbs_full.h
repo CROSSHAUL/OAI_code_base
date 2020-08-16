@@ -19,9 +19,6 @@
  *      contact@openairinterface.org
  */
 
-#ifndef __DLSCH_TBS_FULL__H__
-#define __DLSCH_TBS_FULL__H__
-
 #define TBStable_rowCnt 27
 
 /** \brief "Transport block size table"
@@ -57,4 +54,3 @@ unsigned int TBStable[TBStable_rowCnt][110] = {{16,32,56,88,120,152,176,208,224,
 };
 
 unsigned int TBStable1C[32] = {40, 56, 72, 120, 136, 144, 176, 208, 224, 256, 280, 296, 328, 336, 392, 488, 552, 600, 632, 696, 776, 840, 904, 1000, 1064, 1128, 1224, 1288, 1384, 1480, 1608, 1736};
-#endif

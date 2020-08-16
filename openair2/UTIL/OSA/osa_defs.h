@@ -29,8 +29,8 @@
  * @ingroup security
 */
 
-#ifndef __UTIL_OSA_OSA_DEFS__H__
-#define __UTIL_OSA_OSA_DEFS__H__
+#ifndef SECU_DEFS_H_
+#define SECU_DEFS_H_
 
 #define EIA0_ALG_ID     0x00
 #define EIA1_128_ALG_ID 0x01
@@ -115,4 +115,4 @@ int stream_decrypt(uint8_t algorithm, stream_cipher_t *stream_cipher, uint8_t **
 int stream_check_integrity(uint8_t algorithm, stream_cipher_t *stream_cipher, uint8_t *expected);
 #undef SECU_DEBUG
 
-#endif /* __UTIL_OSA_OSA_DEFS__H__ */
+#endif /* SECU_DEFS_H_ */

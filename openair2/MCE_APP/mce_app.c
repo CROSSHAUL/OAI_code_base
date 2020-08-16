@@ -343,9 +343,7 @@ void *MCE_app_task(void *args_p) {
 
   /* Try to register each MCE */
   // This assumes that node_type of all RRC instances is the same
-  if ( EPC_MODE_ENABLED && RC.rrc == NULL )
-	  LOG_E(RRC, "inconsistent global variables\n");
-  if (EPC_MODE_ENABLED && RC.rrc ) {
+  if (EPC_MODE_ENABLED) {
     register_mce_pending = MCE_app_register(RC.rrc[0]->node_type, mce_id_start, mce_id_end);
   }
 

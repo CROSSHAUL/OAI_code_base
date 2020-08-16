@@ -30,9 +30,6 @@
  * \warning
  */
 
-#ifndef __ENB_APP_ENB_PARAMDEF_EMTC__H__
-#define __ENB_APP_ENB_PARAMDEF_EMTC__H__
-
 #include "common/config/config_paramdesc.h"
 #include "RRC_paramsvalues.h"
 
@@ -408,5 +405,3 @@ typedef struct ccparams_eMTC_s {
 {"sib2_interval_ULHoppingConfigCommonModeB_r13_val",                 NULL,   0,           iptr:&eMTCconfig->sib2_interval_ULHoppingConfigCommonModeB_r13_val,   defintval:0,            TYPE_UINT,       0}, \
 {"sib2_mpdcch_pdsch_hoppingOffset_r13",                              NULL,   0,           iptr:&eMTCconfig->sib2_mpdcch_pdsch_hoppingOffset_r13,                defintval:1,             TYPE_UINT,         0} \
 }
-
-#endif
