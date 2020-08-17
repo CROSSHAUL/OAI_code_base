@@ -77,6 +77,29 @@ void du_task_send_sctp_association_req(instance_t instance, f1ap_setup_req_t *f1
 
   //printf("nr_cellid : %llx (%lld)",f1ap_setup_req->nr_cellid[0],f1ap_setup_req->nr_cellid[0]);
   
+  LOG_W(F1AP, "JULIO - CNX_ID: %d, PORT: %d, PPID: %d, SCTP_IN_STREAMS: %d, SCTP_OUT_STREAMS: %d", 
+    sctp_new_association_req_p->ulp_cnx_id,
+    sctp_new_association_req_p->port,
+    sctp_new_association_req_p->ppid,
+    f1ap_setup_req->sctp_in_streams,
+    f1ap_setup_req->sctp_out_streams,
+  )
+
+  LOG_W(F1AP, "JULIO REMOTE- CU IPV4: %s, CU IPV6: %s, IPV4_SELECTED: %d, IPV6_SELECTED: %d", 
+    f1ap_setup_req->CU_f1_ip_address->ipv4_address,
+    f1ap_setup_req->CU_f1_ip_address->ipv6_address,
+    f1ap_setup_req->CU_f1_ip_address->ipv4,
+    f1ap_setup_req->CU_f1_ip_address->ipv6,
+  )
+
+  LOG_W(F1AP, "JULIO LOCAL - DU IPV4: %s, DU IPV6: %s, IPV4_SELECTED: %d, IPV6_SELECTED: %d", 
+    f1ap_setup_req->DU_f1_ip_address->ipv4_address,
+    f1ap_setup_req->DU_f1_ip_address->ipv6_address,
+    f1ap_setup_req->DU_f1_ip_address->ipv4,
+    f1ap_setup_req->DU_f1_ip_address->ipv6,
+  )
+  
+
   //du_f1ap_register_to_sctp
   itti_send_msg_to_task(TASK_SCTP, instance, message_p);
 }
